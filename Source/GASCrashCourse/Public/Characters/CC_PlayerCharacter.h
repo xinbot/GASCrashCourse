@@ -9,19 +9,25 @@
 class USpringArmComponent;
 class UCameraComponent;
 
-/**
- * 
- */
 UCLASS()
 class GASCRASHCOURSE_API ACC_PlayerCharacter : public ACC_BaseCharacter
 {
 	GENERATED_BODY()
 	
 public:
+
 	ACC_PlayerCharacter();
 
-private:
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
+	virtual UAttributeSet* GetAttributeSet() const override;
+
+	virtual void PossessedBy(AController* NewController) override;
+	
+	virtual void OnRep_PlayerState() override;
+
+private:
+	 
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	TObjectPtr<USpringArmComponent> CameraBoom;
 

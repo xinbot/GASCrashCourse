@@ -9,6 +9,7 @@
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
+struct FGameplayTag;
 
 UCLASS()
 class GASCRASHCOURSE_API ACC_PlayerController : public APlayerController
@@ -24,14 +25,23 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input")
 	TArray<TObjectPtr<UInputMappingContext>> InputMappingContexts;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input|Movement")
 	TObjectPtr<UInputAction> JumpAction;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input|Movement")
 	TObjectPtr<UInputAction> MoveAction;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input|Movement")
 	TObjectPtr<UInputAction> LookAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input|Abilities")
+	TObjectPtr<UInputAction> PrimaryAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input|Abilities")
+	TObjectPtr<UInputAction> SecondaryAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Crash|Input|Abilities")
+	TObjectPtr<UInputAction> TertiaryAction;
 
 	void Jump();
 	void StopJumping();
@@ -39,4 +49,12 @@ private:
 	void Move(const FInputActionValue& Value);
 
 	void Look(const FInputActionValue& Value);
+
+	void Primary();
+
+	void Secondary();
+
+	void Tertiary();
+
+	void ActivateAbility(const FGameplayTag& AbilityTag) const;
 };
